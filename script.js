@@ -6,7 +6,9 @@ function makePageForEpisodes(films) {
   films.forEach(film => {
     const movieCard = movieTemplate.content.cloneNode(true);
 
-    movieCard.querySelector(".title").textContent = film.name;
+    movieCard.querySelector(".title").textContent = 
+    
+    `${film.name}: S${String(film.season).padStart(2,"0")}E${String(film.number).padStart(2,"0")}` ;
 
     const img = movieCard.querySelector("img");
     img.src = film.image.medium;
