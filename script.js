@@ -2,21 +2,21 @@ function makePageForEpisodes(films) {
   const movieContainer = document.querySelector("#movie-container");
   const movieTemplate = document.querySelector("#movie-template");
 
-  // Loop through the movie data and dynamically create movie cards
+  
   films.forEach(film => {
     const movieCard = movieTemplate.content.cloneNode(true);
 
-    movieCard.querySelector(".title").textContent = film.title;
+    movieCard.querySelector(".title").textContent = film.name;
 
     const img = movieCard.querySelector("img");
-    img.src = film.image;
+    img.src = film.image.medium;
     img.alt = film.title;
 
     const details = movieCard.querySelector(".details");
     details.innerHTML = `
-      <p><strong>Director:</strong> ${film.director}</p>
-      <p><strong>Certificate:</strong> ${film.certificate}</p>
-      <p><strong>Duration:</strong> ${film.duration} minutes</p>
+        <p>${film.summary}</p>
+      
+
     `;
 
     movieContainer.appendChild(movieCard);
