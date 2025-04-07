@@ -5,8 +5,6 @@ function makePageForEpisodes(films) {
   episodeCount.id = "episode-count"; // the id of the episode count.
   episodeCount.textContent = `Got ${films.length} episode(s)`; // implemented template literal to display the number of episodes.
 
-<<<<<<< HEAD
-=======
   // Clear previous movie cards
   // movieContainer.innerHTML = "";
 
@@ -18,7 +16,6 @@ function makePageForEpisodes(films) {
   const episodeCount = document.createElement("div");
   episodeCount.id = "episode-count";
   episodeCount.textContent = `Got ${films.length} episode(s)`;
->>>>>>> acd3845 (implemented search term for the search input and a dropdown for user to select choice of movie)
   movieContainer.appendChild(episodeCount);
 
   films.forEach((film) => {

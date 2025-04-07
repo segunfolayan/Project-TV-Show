@@ -12,6 +12,7 @@
   margin: 40px;
 }
 
+<<<<<<< HEAD
 /* episode count in other to count the length of the episode */
 #episode-count {
   font-size: 1.5em;
@@ -24,6 +25,8 @@
   z-index: 1;
 }
 
+=======
+>>>>>>> dc4f093 (styled the functions)
 .movie-card {
   width: 20%;
   height: 500px;
@@ -72,3 +75,23 @@
   justify-content: top;
   color: #333;
 }
+<<<<<<< HEAD
+=======
+
+#episode-select {
+  width: 20%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#search-input {
+  width: 30%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+>>>>>>> dc4f093 (styled the functions)
