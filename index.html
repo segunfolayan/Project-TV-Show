@@ -9,8 +9,22 @@
   </head>
 
   <body>
+    <div style="text-align: center; margin-top: 20px">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search episodes..."
+        style="padding: 8px; font-size: 16px"
+      />
+    </div>
+
+    <div style="text-align: center; margin-top: 10px">
+      <select id="episode-select" style="padding: 8px; font-size: 16px">
+        <option value="">Select an Episode</option>
+      </select>
+    </div>
+
     <div class="movie-container" id="movie-container">
-  
       <template id="movie-template">
         <div class="movie-card">
           <div class="title"></div>
@@ -18,17 +32,21 @@
           <div class="details"></div>
         </div>
       </template>
-    
     </div>
 
-    <footer style="text-align: center; margin-top: 2rem; padding: 1rem 0; background-color: #f5f5f5;">
-      <p>Data originally from 
+    <footer
+      style="
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem 0;
+        background-color: #f5f5f5;
+      "
+    >
+      <p>
+        Data originally from
         <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
       </p>
     </footer>
-
-  
-   
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
