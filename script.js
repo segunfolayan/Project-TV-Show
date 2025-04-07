@@ -7,6 +7,7 @@ function makePageForEpisodes(films) {
 
   // Clear previous movie cards
   // movieContainer.innerHTML = "";
+  //
 
   const movieCards = movieContainer.querySelectorAll(".movie-card");
   movieCards.forEach((card) => {
