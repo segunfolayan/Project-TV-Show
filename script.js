@@ -1,23 +1,23 @@
 function makePageForEpisodes(films) {
   const movieContainer = document.querySelector("#movie-container");
   const movieTemplate = document.querySelector("#movie-template");
-  const episodeCount = document.createElement("div"); // createed a div element for each episode count in other to count how many episodes.
-  episodeCount.id = "episode-count"; // the id of the episode count.
-  episodeCount.textContent = `Got ${films.length} episode(s)`; // implemented template literal to display the number of episodes.
 
   // Clear previous movie cards
   // movieContainer.innerHTML = "";
-  //
 
   const movieCards = movieContainer.querySelectorAll(".movie-card");
   movieCards.forEach((card) => {
     card.remove();
   });
 
-  const episodeCount = document.createElement("div");
-  episodeCount.id = "episode-count";
+  let episodeCount = document.querySelector("#episode-count");
+  if (!episodeCount) {
+    episodeCount = document.createElement("div");
+    episodeCount.id = "episode-count";
+    movieContainer.prepend(episodeCount);
+  }
+
   episodeCount.textContent = `Got ${films.length} episode(s)`;
-  movieContainer.appendChild(episodeCount);
 
   films.forEach((film) => {
     const movieCard = movieTemplate.content.cloneNode(true);
@@ -44,7 +44,11 @@ function makePageForEpisodes(films) {
 function liveSearch(films) {
   const searchInput = document.querySelector("#search-input");
   searchInput.addEventListener("input", function () {
-    const query = searchInput.value.toLowerCase();
+    const query = searchInput.value.toLowerCase().trim();
+
+    // if (query === "") {
+    //   // Show all episodes if input is empty
+    //   filteredFilms = films;
 
     // Filter episodes based on name or summary
     const filteredFilms = films.filter((film) => {
@@ -67,24 +71,36 @@ function episodeSelector(films) {
   selectInput.innerHTML = ""; // Clear previous options
 
   // Populate the select dropdown with episodes
-  films.forEach((film) => {
+  films.forEach((film, index) => {
     const option = document.createElement("option");
-    option.value = film.id; // Assuming each episode has a unique 'id'
+    option.value = index; // Use index as value to easily access selected episode
     option.textContent = `S${String(film.season).padStart(2, "0")}E${String(
       film.number
     ).padStart(2, "0")} - ${film.name}`;
     selectInput.appendChild(option);
   });
-  // Event listener to navigate to the selected episode
-  selectInput.addEventListener("change", function () {
-    const selectedEpisodeId = selectInput.value;
-    const selectedEpisode = films.find((film) => film.id === selectedEpisodeId);
 
-    if (selectedEpisode) {
-      // Clear the container and display only the selected episode
-      const movieContainer = document.querySelector("#movie-container");
-      movieContainer.innerHTML = ""; // Clear previous content
-      makePageForEpisodes([selectedEpisode]);
+  // Event listener to handle episode selection
+  selectInput.addEventListener("change", (event) => {
+    const selectedIndex = event.target.value; // Get the selected index
+    if (selectedIndex === "") {
+      // If no episode is selected, show all episodes
+      makePageForEpisodes(films);
+    } else {
+      // Show only the selected episode
+      const selectedEpisode = films[selectedIndex];
+      makePageForEpisodes([selectedEpisode]); // Render the selected episode
+
+      // Scroll to the selected episode
+      const episodeElement = document.querySelector(
+        `#episode-${selectedEpisode.id}`
+      );
+      if (episodeElement) {
+        episodeElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start", // Scroll the episode to the top of the page
+        });
+      }
     }
   });
 }
