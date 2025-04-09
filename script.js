@@ -106,39 +106,48 @@ function episodeSelector(films) {
   });
 }
 
+//Function to fetch the list of episodes form the API
 async function fetchEpisodes() {
-  const endpoint = "https://api.tvmaze.com/shows/82/episodes"  
-  const response = await fetch(endpoint);
+  const endpoint = "https://api.tvmaze.com/shows/82/episodes"  //Defines the source of the data
+  const response = await fetch(endpoint); //fetch data from API and wait for response
 
-  if (response.status === 200) {
-    return response.json(); // Parse and return JSON
-  } else {
-    return {
+  if (response.status === 200) {  //Check is the response is successful
+    return response.json(); //return JSON data
+ } else {
+    return {         //If there s an error, then return an object with then error message 
       error : "error status is " + response.status + " message: " + response.statusText 
     };
   }
 }
 
+
+   //This function displays the status message in a div
 function showStatusMessage(message, color = "#f0f0f0") {
   let statusDiv = document.querySelector("#status-message");
 
+  //create status div does not exist then it needs to be created
   if (!statusDiv) {
-    statusDiv = document.createElement("div");
-    statusDiv.id = "status-message";
-    statusDiv.style.textAlign = "center";
+    statusDiv = document.createElement("div"); //Creates status div
+    statusDiv.id = "status-message"; //Assign Id
+
+    //Apply CSS styling to status div
+    statusDiv.style.textAlign = "center";  
     statusDiv.style.padding = "1rem";
     statusDiv.style.fontSize = "1.1rem";
     statusDiv.style.fontWeight = "bold";
-    document.body.insertBefore(statusDiv, document.body.firstChild);
+
+    document.body.insertBefore(statusDiv, document.body.firstChild); //Insert the status div at the top of the document body
   }
 
-  statusDiv.style.backgroundColor = color;
-  statusDiv.textContent = message;
+  statusDiv.style.backgroundColor = color; //set the background colour of the status div
+  statusDiv.textContent = message; //set the text content of the status div to the message provided.
 }
 
+
+//Create a function to display handle and display error message
 function handleEpisodeError(response) {
   if (response.error) {
-    showStatusMessage(`Error: ${response.error}`, "#f8d7da");
+    showStatusMessage(`Error: ${response.error}`, "#f8d7da"); 
     throw new Error(response.error); // Throw an error to exit early
   }
 }
@@ -148,13 +157,13 @@ function handleEpisodeError(response) {
 
 async function setup() {
 
-  showStatusMessage("Loading episodes, please wait...", "#fff3cd");
-  const allEpisodes = await fetchEpisodes();
-  handleEpisodeError(allEpisodes)
-  showStatusMessage("");
-  makePageForEpisodes(allEpisodes);
-  liveSearch(allEpisodes);
-  episodeSelector(allEpisodes);
+  showStatusMessage("Loading episodes, please wait...", "#fff3cd"); //show this message while fetching episodes
+  const allEpisodes = await fetchEpisodes(); //Fetch episodes
+  handleEpisodeError(allEpisodes); //Handle and display any errors during the fetching process
+  showStatusMessage(""); //clear the status message after fetching the data
+  makePageForEpisodes(allEpisodes); //call this function to generate the page with the available data
+  liveSearch(allEpisodes);  //Include a search functionally
+  episodeSelector(allEpisodes); //Include an episode selector functionality
 }
 
 window.onload = setup;
