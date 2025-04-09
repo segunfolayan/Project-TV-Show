@@ -106,8 +106,52 @@ function episodeSelector(films) {
   });
 }
 
-function setup() {
-  const allEpisodes = getAllEpisodes();
+async function fetchEpisodes() {
+  const endpoint = "https://api.tvmaze.com/shows/82/episodes"  
+  const response = await fetch(endpoint);
+
+  if (response.status === 200) {
+    return response.json(); // Parse and return JSON
+  } else {
+    return {
+      error : "error status is " + response.status + " message: " + response.statusText 
+    };
+  }
+}
+
+function showStatusMessage(message, color = "#f0f0f0") {
+  let statusDiv = document.querySelector("#status-message");
+
+  if (!statusDiv) {
+    statusDiv = document.createElement("div");
+    statusDiv.id = "status-message";
+    statusDiv.style.textAlign = "center";
+    statusDiv.style.padding = "1rem";
+    statusDiv.style.fontSize = "1.1rem";
+    statusDiv.style.fontWeight = "bold";
+    document.body.insertBefore(statusDiv, document.body.firstChild);
+  }
+
+  statusDiv.style.backgroundColor = color;
+  statusDiv.textContent = message;
+}
+
+function handleEpisodeError(response) {
+  if (response.error) {
+    showStatusMessage(`Error: ${response.error}`, "#f8d7da");
+    throw new Error(response.error); // Throw an error to exit early
+  }
+}
+
+
+
+
+async function setup() {
+
+  showStatusMessage("Loading episodes, please wait...", "#fff3cd");
+  const allEpisodes = await fetchEpisodes();
+  handleEpisodeError(allEpisodes)
+  showStatusMessage("");
   makePageForEpisodes(allEpisodes);
   liveSearch(allEpisodes);
   episodeSelector(allEpisodes);
