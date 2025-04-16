@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-/* Container for all movie cardss */
+/* Container for all movie cardsss */
 .movie-container {
   display: flex;
   flex-wrap: wrap;
@@ -13,7 +13,7 @@
 }
 
 /* episode count in other to count the length of the episode */
-/* #episode-count {
+#episode-count {
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 20px;
@@ -21,8 +21,8 @@
   top: 0;
   width: 100%;
   text-align: center;
-  
-} */
+  z-index: 1;
+}
 
 .movie-card {
   width: 20%;
@@ -71,22 +71,4 @@
   flex-direction: column;
   justify-content: top;
   color: #333;
-}
-
-
-#episode-select {
-  width: 20%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-#search-input {
-  width: 30%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  margin-bottom: 10px;
 }
