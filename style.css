@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-/* Container for all movie cardsss */
+/* Container for all movie cardss */
 .movie-container {
   display: flex;
   flex-wrap: wrap;
