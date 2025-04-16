@@ -166,4 +166,4 @@ async function setup() {
   episodeSelector(allEpisodes); //Include an episode selector functionality
 }
 
-window.onload = setup;
+window.onload = setup; 
