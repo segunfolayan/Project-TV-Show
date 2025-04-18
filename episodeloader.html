@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV Show Project | Segun Folayan (segunfolayan)</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <div style="text-align: center; margin-top: 20px">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search episodes..."
+        style="padding: 8px; font-size: 16px"
+      />
+    </div>
+
+    <div style="text-align: center; margin-top: 10px">
+      <select id="episode-select" style="padding: 8px; font-size: 16px">
+        <option value="">Select an Episode</option>
+      </select>
+    </div>
+
+  
+
+    <div id="status-message"></div>
+
+    <div id="episode-count"></div>
+
+    <div id="episode-container"></div>
+
+    <div class="movie-container" id="movie-container">
+      <template id="movie-template">
+        <div class="movie-card">
+          <div class="title"></div>
+          <div class="image"><img src="" alt="" /></div>
+          <div class="details"></div>
+        </div>
+      </template>
+    </div>
+
+    <footer
+      style="
+        text-align: center;
+        margin-top: 2rem;
+        padding: 1rem 0;
+        background-color: #f5f5f5;
+      "
+    >
+      <p>
+        Data originally from!
+        <a href="https://www.tvmaze.com/" target="_blank">TVMaze.com</a>
+      </p>
+    </footer>
+
+    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    <script src="episodes.js"></script>
+
+    <!-- Loads YOUR javascript code -->
+    <script src="episodeloader.js"></script>
+  </body>
+</html>
