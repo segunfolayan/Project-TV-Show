@@ -10,8 +10,8 @@ searchBox.addEventListener("input", () => {
   const filteredShows = allShows.filter((show) => {
     return (
       show.name.toLowerCase().includes(query) ||
-      show.genres.join(", ").toLowerCase().includes(query) ||
-      show.summary.toLowerCase().includes(query)
+      show.genres.toLowerCase().includes(query) ||
+      show.summary?.toLowerCase().includes(query)
     );
   });
 
