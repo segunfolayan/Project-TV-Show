@@ -30,7 +30,7 @@ function setupSearch() {
     show.summary?.toLowerCase().includes(query)
     );
     displayShows(filtered);
-    showCount.textContent = `Found ${filteredShows.length} show(s)`;
+    showCount.textContent = `Found ${filtered.length} show(s)`;
     populateDropdown(filtered);
   });
 }
@@ -95,6 +95,7 @@ async function fetchAllShows() {
     displayShows(allShows);
     populateDropdown(allShows);
     setupSearch();
+    showCount.textContent = `Found ${allShows.length} show(s)`;
   } catch (error) {
     console.error("Error fetching shows:", error);
   }
