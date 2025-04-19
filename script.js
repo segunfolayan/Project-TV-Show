@@ -5,20 +5,35 @@ let allShows = [];
 const searchBox = document.getElementById("show-search");
 const showCount = document.getElementById("show-count");
 
-searchBox.addEventListener("input", () => {
-  const query = searchBox.value.toLowerCase().trim();
-  const filteredShows = allShows.filter((show) => {
-    return (
-      show.name.toLowerCase().includes(query) ||
-      show.genres.toLowerCase().includes(query) ||
-      show.summary?.toLowerCase().includes(query)
+//searchBox.addEventListener("input",  () => {
+ // const query = searchBox.value.toLowerCase().trim();
+ // const filteredShows = allShows.filter((show) => {
+    //return (
+      //show.name.toLowerCase().includes(query) ||
+      //show.genres.join(' ').toLowerCase().includes(query) ||
+     // show.summary?.toLowerCase().includes(query)
+    //);
+  //});
+
+ // showCount.textContent = `Found ${filteredShows.length} show(s)`;
+ // renderShows(filteredShows); // Assuming this function updates your UI
+//});
+
+
+function setupSearch() {
+  const searchInput = document.getElementById("show-search");
+  searchInput.addEventListener("input", () => {
+    const query = searchInput.value.toLowerCase();
+    const filtered = allShows.filter((show) =>
+    show.name.toLowerCase().includes(query)||
+    show.genres.join(' ').toLowerCase().includes(query) ||
+    show.summary?.toLowerCase().includes(query)
     );
+    displayShows(filtered);
+    showCount.textContent = `Found ${filteredShows.length} show(s)`;
+    populateDropdown(filtered);
   });
-
-  showCount.textContent = `Found ${filteredShows.length} show(s)`;
-  renderShows(filteredShows); // Assuming this function updates your UI
-});
-
+}
 
 
 function displayShows(shows) {
@@ -71,17 +86,6 @@ function populateDropdown(shows) {
   });
 }
 
-function setupSearch() {
-  const searchInput = document.getElementById("show-search");
-  searchInput.addEventListener("input", () => {
-    const query = searchInput.value.toLowerCase();
-    const filtered = allShows.filter((show) =>
-      show.name.toLowerCase().includes(query)
-    );
-    displayShows(filtered);
-    populateDropdown(filtered);
-  });
-}
 
 async function fetchAllShows() {
   try {
